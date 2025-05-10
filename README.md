@@ -34,7 +34,7 @@ The system flow is as follows:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/translation-service.git
+git clone https://github.com/Ya-zid/translation-service.git
 cd translation-service
 ```
 
@@ -225,3 +225,67 @@ configProps.put(SaslConfigs.SASL_JAAS_CONFIG, "org.apache.kafka.common.security.
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+# Translation Microservice Documentation
+
+## Overview
+
+This Translation Microservice provides a RESTful API for translating text between different languages using asynchronous processing with Kafka. The service accepts translation requests and processes them in the background, making it ideal for high-volume translation needs.
+
+## API Documentation
+
+The service includes comprehensive Swagger/OpenAPI documentation for easy API exploration:
+
+1. Start the application
+2. Navigate to [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) in your web browser
+3. Explore the available endpoints and try them out directly from the UI
+
+The raw OpenAPI specification is available at [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
+
+## API Endpoints
+
+### Translation API
+
+`POST /api/translate`
+- Submit text for translation between languages
+- Request body example:
+  ```json
+  {
+    "text": "Hello world",
+    "sourceLanguage": "en",
+    "targetLanguage": "es"
+  }
+  ```
+- Response example:
+  ```json
+  {
+    "message": "Translation request accepted with ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "requestId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  }
+  ```
+
+### Languages API
+
+`GET /api/languages`
+- Returns a list of all languages available for translation
+- Response example:
+  ```json
+  [
+    {
+      "code": "en",
+      "name": "English"
+    },
+    {
+      "code": "es",
+      "name": "Spanish"
+    },
+    ...
+  ]
+  ```
+
+## Architecture
+
+This microservice uses:
+- Spring Boot for the REST API
+- Apache Kafka for asynchronous message processing
+- SpringDoc OpenAPI for API documentation

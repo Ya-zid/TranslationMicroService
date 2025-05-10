@@ -1,8 +1,15 @@
 package com.example.demo.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class TranslationResponse {
+    @Schema(description = "Unique identifier matching the original request", example = "a1b2c3d4-e5f6-7890-abcd-ef1234567890")
     private String requestId;
+    
+    @Schema(description = "The translated text", example = "¡Hola, mundo!")
     private String translatedText;
+    
+    @Schema(description = "The target language code", example = "es")
     private String targetLanguage;
 
     public TranslationResponse() {}
